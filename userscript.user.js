@@ -8,6 +8,11 @@
 (function () {
   "use strict";
 
+  // 后台更新缓存
+  fetch("https://cdn.jsdelivr.net/gh/koorinyaa/fuyuake@master/userscript.user.js", {
+    cache: "reload"
+  }).catch(() => {});
+
   const pathName = window.location.pathname;
 
   const launchObserver = ({
