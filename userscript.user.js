@@ -96,10 +96,10 @@
     pathName.startsWith("/character")
   ) {
     waitForElement(
-      "#tg-character-box #tg-trade-box #tg-trade-box-header #tg-trade-box-header-actions",
+      "#tg-character-box #tg-trade-box #tg-trade-box-header-actions",
       () => {
         addButtonToAll(
-          "#tg-character-box #tg-trade-box #tg-trade-box-header #tg-trade-box-header-actions",
+          "#tg-character-box #tg-trade-box #tg-trade-box-header-actions",
           "fuyuake-chara",
           "FUYUAKE",
           function () {
