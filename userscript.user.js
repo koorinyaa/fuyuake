@@ -119,10 +119,10 @@
     pathName.startsWith("/user")
   ) {
     waitForElement(
-      "#tg-character-box #tg-trade-box #tg-trade-box-header-actions",
+      "#tg-trade-box #tg-trade-box-header-actions",
       () => {
         addButtonToAll(
-          "#tg-character-box #tg-trade-box #tg-trade-box-header-actions",
+          "#tg-trade-box #tg-trade-box-header-actions",
           "fuyuake-chara",
           "FUYUAKE",
           function () {
@@ -149,10 +149,10 @@
     pathName.startsWith("/user")
   ) {
     waitForElement(
-      "#tg-user-tinygrail #tg-user-tinygrail-header #tg-user-tinygrail-actions",
+      "#tg-user-tinygrail-header #tg-user-tinygrail-actions",
       () => {
         addButtonToAll(
-          "#tg-user-tinygrail #tg-user-tinygrail-header #tg-user-tinygrail-actions",
+          "#tg-user-tinygrail-header #tg-user-tinygrail-actions",
           "fuyuake-user",
           "FUYUAKE",
           function () {
