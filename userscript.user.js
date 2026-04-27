@@ -119,10 +119,10 @@
     pathName.startsWith("/user")
   ) {
     waitForElement(
-      "#tg-trade-box #tg-trade-box-header-actions",
+      "#tg-trade-box-header-actions",
       () => {
         addButtonToAll(
-          "#tg-trade-box #tg-trade-box-header-actions",
+          "#tg-trade-box-header-actions",
           "fuyuake-chara",
           "FUYUAKE",
           function () {
