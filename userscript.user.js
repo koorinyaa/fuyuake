@@ -22,7 +22,7 @@
   const BUTTON_CLASS =
     "whitespace-nowrap font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed px-3 py-1 text-xs rounded-md bgm-bg text-white font-semibold shadow-sm hover:opacity-90";
 
-  // 工具函数：等待元素出现并执行回调
+  // 等待元素出现并执行回调
   const waitForElement = (selector, callback, continuous = false) => {
     const observer = new MutationObserver(() => {
       const elements = document.querySelectorAll(selector);
@@ -42,7 +42,7 @@
     }
   };
 
-  // 工具函数：添加按钮（防重复）
+  // 添加按钮
   const addButton = (containerSelector, buttonId, buttonText, onClick) => {
     const $container = $(containerSelector);
     if ($container.find(`#${buttonId}`).length > 0) return;
@@ -54,7 +54,7 @@
     $container.append($button);
   };
 
-  // 工具函数：为所有匹配的容器添加按钮（防重复）
+  // 为所有匹配的容器添加按钮
   const addButtonToAll = (
     containerSelector,
     buttonClass,
@@ -73,7 +73,7 @@
     });
   };
 
-  // 功能1: Bot授权按钮
+  // Bot授权按钮
   if (pathName.startsWith("/rakuen/home")) {
     waitForElement(
       "#tg-rakuen-home-user-card #tg-rakuen-home-user-actions",
@@ -111,7 +111,7 @@
     );
   }
 
-  // 功能2: 角色交易按钮
+  // 角色交易按钮
   if (
     pathName.startsWith("/rakuen/home") ||
     pathName.startsWith("/rakuen/topic/crt/") ||
@@ -119,10 +119,10 @@
     pathName.startsWith("/user")
   ) {
     waitForElement(
-      "#tg-trade-box-header-actions",
+      "#tg-trade-box-header-actions #tg-actions-scroll-container",
       () => {
         addButtonToAll(
-          "#tg-trade-box-header-actions",
+          "#tg-trade-box-header-actions #tg-actions-scroll-container",
           "fuyuake-chara",
           "FUYUAKE",
           function () {
@@ -141,7 +141,7 @@
     );
   }
 
-  // 功能3: 用户信息按钮
+  // 用户信息按钮
   if (
     pathName.startsWith("/rakuen/home") ||
     pathName.startsWith("/rakuen/topic/crt/") ||
