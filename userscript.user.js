@@ -20,7 +20,7 @@
 
   // 按钮样式常量
   const BUTTON_CLASS =
-    "whitespace-nowrap font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed px-3 py-1 text-xs rounded-md bgm-bg text-white font-semibold shadow-sm hover:opacity-90";
+    "btn-bgm btn btn-xs";
 
   // 等待元素出现并执行回调
   const waitForElement = (selector, callback, continuous = false) => {
@@ -111,7 +111,7 @@
     );
   }
 
-  // 角色交易按钮
+  // 功能2: 角色头像点击事件
   if (
     pathName.startsWith("/rakuen/home") ||
     pathName.startsWith("/rakuen/topic/crt/") ||
@@ -119,29 +119,32 @@
     pathName.startsWith("/user")
   ) {
     waitForElement(
-      "#tg-trade-box-header-actions #tg-actions-scroll-container",
+      "#tg-character-box #tg-trade-box-header-avatar",
       () => {
-        addButtonToAll(
-          "#tg-trade-box-header-actions #tg-actions-scroll-container",
-          "fuyuake-chara",
-          "FUYUAKE",
-          function () {
-            const charaId = $(this)
-              .closest("#tg-trade-box")
-              .attr("data-character-id");
+        $("#tg-character-box #tg-trade-box-header-avatar").each(function () {
+          const $avatar = $(this);
+          // 检查是否已绑定事件，避免重复绑定
+          if ($avatar.data("fuyuake-bound")) return;
+
+          $avatar.css("cursor", "pointer");
+          $avatar.on("click", function () {
+            const charaId = $(this).closest("#tg-character-box").attr("data-character-id");
             if (charaId) {
               window.open(`https://fuyuake.top/xsb/chara/${charaId}`);
             } else {
               alert("未找到角色ID");
             }
-          },
-        );
+          });
+
+          // 标记已绑定
+          $avatar.data("fuyuake-bound", true);
+        });
       },
       true, // 持续监听
     );
   }
 
-  // 用户信息按钮
+  // 功能3: 用户头像点击事件
   if (
     pathName.startsWith("/rakuen/home") ||
     pathName.startsWith("/rakuen/topic/crt/") ||
@@ -149,23 +152,26 @@
     pathName.startsWith("/user")
   ) {
     waitForElement(
-      "#tg-user-tinygrail-header #tg-user-tinygrail-actions",
+      "#tg-user-tinygrail-header #tg-user-avatar",
       () => {
-        addButtonToAll(
-          "#tg-user-tinygrail-header #tg-user-tinygrail-actions",
-          "fuyuake-user",
-          "FUYUAKE",
-          function () {
-            const username = $(this)
-              .closest("#tg-user-tinygrail")
-              .attr("data-username");
+        $("#tg-user-tinygrail-header #tg-user-avatar").each(function () {
+          const $avatar = $(this);
+          // 检查是否已绑定事件，避免重复绑定
+          if ($avatar.data("fuyuake-bound")) return;
+          
+          $avatar.css("cursor", "pointer");
+          $avatar.on("click", function () {
+            const username = $(this).closest("#tg-user-tinygrail").attr("data-username");
             if (username) {
               window.open(`https://fuyuake.top/xsb/user/${username}`);
             } else {
               alert("未找到用户名");
             }
-          },
-        );
+          });
+          
+          // 标记已绑定
+          $avatar.data("fuyuake-bound", true);
+        });
       },
       true, // 持续监听
     );
